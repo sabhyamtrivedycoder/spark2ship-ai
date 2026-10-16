@@ -21,7 +21,9 @@ Keep `.env.local` private. It is excluded by `.gitignore`. Never put an API key 
 
 ## Deploy
 
-The app includes Vercel serverless functions in `api/`. Import this repository into Vercel, add `OPENAI_API_KEY` as an environment variable in the project settings, optionally set `OPENAI_MODEL`, then deploy. If no key is configured, users see sample output. Before sharing a live AI-enabled endpoint broadly, add an access or rate limit appropriate for your deployment so other people cannot use your API quota without permission.
+GitHub Pages publishes the static website from this repository with the workflow in `.github/workflows/pages.yml`. It serves the project planner in demo mode with sample plans and coaching. GitHub Pages cannot run the private-key AI endpoints.
+
+For tailored AI responses, deploy the serverless functions to Vercel, add `OPENAI_API_KEY` as an environment variable in the project settings, optionally set `OPENAI_MODEL`, then configure the front end to call that server. Never put an API key in browser code. Before sharing a live AI-enabled endpoint broadly, add an access or rate limit appropriate for your deployment so other people cannot use your API quota without permission.
 
 ## Project structure
 
