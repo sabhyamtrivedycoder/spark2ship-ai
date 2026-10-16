@@ -1,0 +1,11 @@
+{
+  "name": "buildbuddy-ai",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An AI project coach that helps students turn ideas into buildable plans.",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  }
+}
