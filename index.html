@@ -21,6 +21,7 @@
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
     <script src="./app.js" defer></script>
+    <script type="module" src="./auth.js"></script>
   </head>
   <body>
     <div class="app-shell">
@@ -32,6 +33,7 @@
         <div class="topbar-right">
           <span class="status-pill"><i></i><span id="mode-label">Sample mode</span></span>
           <a class="top-link" href="#how-it-works">How it works <span aria-hidden="true">↗</span></a>
+          <button class="account-button" id="auth-open" type="button">Sign in</button>
         </div>
       </header>
 
@@ -125,6 +127,40 @@
           </div>
         </section>
       </main>
+
+      <dialog class="auth-dialog" id="auth-dialog" aria-labelledby="auth-title">
+        <div class="auth-panel">
+          <button class="auth-close" id="auth-close" type="button" aria-label="Close sign-in window">×</button>
+          <a class="brand auth-brand" href="./" aria-label="Spark2Ship AI home"><span class="brand-mark" aria-hidden="true"><img src="./logo.svg" alt="" /></span><span class="brand-name">spark2ship<span>AI</span></span></a>
+          <div id="auth-signed-out">
+            <p class="eyebrow auth-eyebrow">YOUR BUILDER SPACE</p>
+            <h2 id="auth-title">Pick up where you left off.</h2>
+            <p class="auth-description">Sign in to your Spark2Ship account. Your project progress remains saved in this browser.</p>
+            <div class="auth-socials" aria-label="Sign in with a provider">
+              <button class="auth-provider" type="button" data-provider="google"><span class="provider-mark">G</span>Continue with Google</button>
+              <button class="auth-provider" type="button" data-provider="microsoft"><span class="provider-mark microsoft-mark">▦</span>Continue with Microsoft</button>
+              <button class="auth-provider" type="button" data-provider="apple"><span class="provider-mark">●</span>Continue with Apple</button>
+              <button class="auth-provider" type="button" data-provider="github"><span class="provider-mark">⌘</span>Continue with GitHub</button>
+            </div>
+            <div class="auth-divider"><span>or use email</span></div>
+            <form id="email-auth-form" class="email-auth-form">
+              <label class="field-label" for="auth-email">Email address</label>
+              <input id="auth-email" type="email" autocomplete="email" placeholder="you@example.com" required />
+              <label class="field-label" for="auth-password">Password</label>
+              <input id="auth-password" type="password" autocomplete="current-password" minlength="8" placeholder="At least 8 characters" required />
+              <button class="primary-button auth-submit" id="auth-submit" type="submit">Sign in <span aria-hidden="true">→</span></button>
+            </form>
+            <div class="auth-links"><button id="auth-mode-toggle" type="button">Create an account</button><button id="auth-reset" type="button">Forgot password?</button></div>
+            <p class="auth-status" id="auth-status" role="status" aria-live="polite">Account sign-in is not connected yet. Connect Firebase Authentication to enable these options.</p>
+          </div>
+          <div class="auth-signed-in" id="auth-signed-in" hidden>
+            <p class="eyebrow auth-eyebrow">YOU’RE SIGNED IN</p>
+            <h2 id="auth-welcome">Welcome back.</h2>
+            <p class="auth-description" id="auth-user-email"></p>
+            <button class="secondary-button auth-signout" id="auth-signout" type="button">Sign out</button>
+          </div>
+        </div>
+      </dialog>
 
       <footer class="footer"><a class="brand footer-brand" href="./"><span class="brand-mark" aria-hidden="true"><img src="./logo.svg" alt="" /></span><span class="brand-name">spark2ship<span>AI</span></span></a><p>Made for the people who turn curiosity into something real.</p><span class="footer-tag">PLAN · BUILD · SHARE</span></footer>
     </div>
