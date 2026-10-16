@@ -1,4 +1,5 @@
-const STORAGE_KEY = "buildbuddy-project-v1";
+const STORAGE_KEY = "spark2ship-project-v1";
+const LEGACY_STORAGE_KEY = "buildbuddy-project-v1";
 const IS_GITHUB_PAGES = window.location.hostname.endsWith(".github.io");
 const form = document.querySelector("#idea-form");
 const ideaField = document.querySelector("#idea");
@@ -11,7 +12,8 @@ let project = readSavedProject();
 
 function readSavedProject() {
   try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+    const saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
+    return JSON.parse(saved || "null");
   } catch {
     return null;
   }
@@ -394,4 +396,8 @@ form.addEventListener("submit", async (event) => {
   }
 });
 
+document.querySelector("#form-note-copy").textContent = IS_GITHUB_PAGES
+  ? "Demo mode uses sample suggestions. Your idea and progress stay in this browser."
+  : "Progress is saved in this browser. In AI mode, your idea is sent to OpenAI to create a plan.";
 renderPlan();
+
