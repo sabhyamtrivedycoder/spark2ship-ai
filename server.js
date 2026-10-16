@@ -90,5 +90,5 @@ const server = http.createServer(async (request, response) => {
 delete process.env.OPENAI_API_KEY;
 await loadLocalEnv();
 server.listen(port, "0.0.0.0", () => {
-  console.log(`BuildBuddy AI is ready at http://localhost:${port}`);
+console.log(`Spark2Ship AI is ready at http://localhost:${port}`);
 });
