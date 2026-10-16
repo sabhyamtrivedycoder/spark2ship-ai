@@ -198,7 +198,7 @@ function renderPlan() {
   const coachIntro = node("div", "coach-intro");
   coachIntro.append(node("span", "coach-icon", "✦"));
   const coachCopy = node("div");
-  coachCopy.append(node("p", "eyebrow", "STUCK ON SOMETHING?"), node("h3", "", "Ask BuildBuddy for a next step."));
+  coachCopy.append(node("p", "eyebrow", "STUCK ON SOMETHING?"), node("h3", "", "Ask Spark2Ship for a next step."));
   coachIntro.append(coachCopy);
   coach.append(coachIntro);
   const coachForm = node("form", "coach-form");
