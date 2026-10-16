@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#10110e" />
+    <meta name="description" content="Turn your project idea into a practical build plan with BuildBuddy AI." />
+    <title>BuildBuddy AI — Make your next idea real</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="BuildBuddy AI home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 36 36" fill="none"><path d="M18 3.5 32.5 18 18 32.5 3.5 18 18 3.5Z" stroke="currentColor" stroke-width="1.5"/><path d="m18 11 7 7-7 7-7-7 7-7Z" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="18" r="2" fill="currentColor"/></svg>
+          </span>
+          <span class="brand-name">buildbuddy<span>AI</span></span>
+        </a>
+        <div class="topbar-right">
+          <span class="status-pill"><i></i><span id="mode-label">Sample mode</span></span>
+          <a class="top-link" href="#how-it-works">How it works <span aria-hidden="true">↗</span></a>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="eyebrow-line"></span> FOR CURIOUS BUILDERS</p>
+            <h1 id="hero-title">Big idea.<br /><em>Clear next step.</em></h1>
+            <p class="hero-description">Turn a project idea into a realistic plan, then keep moving when you hit a blocker.</p>
+            <div class="hero-proof"><span class="proof-icon" aria-hidden="true">✳</span> Made for students who learn by building</div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <div class="orbit-core"><span>✳</span></div>
+            <span class="orbit-dot dot-one"></span><span class="orbit-dot dot-two"></span>
+            <span class="art-label label-top">IDEA</span><span class="art-label label-bottom">→ BUILD</span>
+          </div>
+        </section>
+
+        <section class="workspace" aria-label="Project planner">
+          <div class="section-heading">
+            <div><p class="eyebrow">01 / START WITH AN IDEA</p><h2>What do you want to build?</h2></div>
+            <button class="text-button" id="example-button" type="button"><span aria-hidden="true">✦</span> Try an example</button>
+          </div>
+
+          <div class="planner-grid">
+            <form id="idea-form" class="idea-card">
+              <label class="field-label" for="idea">Your project idea <span>required</span></label>
+              <textarea id="idea" name="idea" maxlength="700" placeholder="Example: A simple website that helps students plan and track a science fair project…" required></textarea>
+              <div class="field-hint"><span>Describe the problem you want to solve.</span><span id="idea-count">0 / 700</span></div>
+
+              <div class="form-row">
+                <div class="field-group">
+                  <label class="field-label" for="budget">Budget</label>
+                  <input id="budget" name="budget" maxlength="100" placeholder="e.g. Under $30" />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="timeframe">Time you have</label>
+                  <select id="timeframe" name="timeframe">
+                    <option value="A weekend">A weekend</option>
+                    <option value="Two weeks" selected>Two weeks</option>
+                    <option value="One month">One month</option>
+                    <option value="A few months">A few months</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field-group">
+                  <label class="field-label" for="skill-level">Your experience</label>
+                  <select id="skill-level" name="skillLevel">
+                    <option>Just starting</option><option selected>Some experience</option><option>Comfortable building</option>
+                  </select>
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="tools">Tools you have <span>optional</span></label>
+                  <input id="tools" name="tools" maxlength="250" placeholder="e.g. Laptop, Arduino Uno" />
+                </div>
+              </div>
+
+              <button class="primary-button" id="generate-button" type="submit">
+                <span class="button-icon" aria-hidden="true">✦</span><span>Build my plan</span><span class="button-arrow" aria-hidden="true">→</span>
+              </button>
+              <p class="form-note"><span aria-hidden="true">⌑</span> Progress is saved in this browser. With AI enabled, your idea is sent to OpenAI to create a plan.</p>
+              <p class="form-error" id="form-error" role="alert" hidden></p>
+            </form>
+
+            <aside class="side-note">
+              <div class="note-number">A good first project</div>
+              <h3>Small enough to finish.<br /><em>Useful enough to share.</em></h3>
+              <p>Start with one clear problem. Build the simplest version that proves your idea, then improve it with feedback.</p>
+              <div class="note-divider"></div>
+              <div class="note-tip"><span class="tip-bulb" aria-hidden="true">✧</span><div><strong>Builder tip</strong><p>Tell us your limits too. A real budget and timeline make a much better plan.</p></div></div>
+            </aside>
+          </div>
+        </section>
+
+        <section id="plan-section" class="plan-section" aria-live="polite" hidden>
+          <div id="plan-content"></div>
+        </section>
+
+        <section class="steps-section" id="how-it-works">
+          <div class="steps-heading"><p class="eyebrow">A SIMPLE BUILD LOOP</p><h2>Idea to <em>“look what I made.”</em></h2></div>
+          <div class="steps-grid">
+            <article class="step-card"><span class="step-index">01</span><span class="step-symbol" aria-hidden="true">↗</span><h3>Describe it</h3><p>Share your idea, the time you have, and the tools you can use.</p></article>
+            <article class="step-card"><span class="step-index">02</span><span class="step-symbol" aria-hidden="true">✳</span><h3>Get a roadmap</h3><p>Break the project into milestones, tasks, tools, and possible hurdles.</p></article>
+            <article class="step-card"><span class="step-index">03</span><span class="step-symbol" aria-hidden="true">⌁</span><h3>Keep building</h3><p>Track your tasks and ask for a practical next step when you get stuck.</p></article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer"><a class="brand footer-brand" href="/"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none"><path d="M18 3.5 32.5 18 18 32.5 3.5 18 18 3.5Z" stroke="currentColor" stroke-width="1.5"/><path d="m18 11 7 7-7 7-7-7 7-7Z" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="18" r="2" fill="currentColor"/></svg></span><span class="brand-name">buildbuddy<span>AI</span></span></a><p>Made for the people who turn curiosity into something real.</p><span class="footer-tag">PLAN · BUILD · SHARE</span></footer>
+    </div>
+  </body>
+</html>
