@@ -4,6 +4,17 @@ Spark2Ship helps student builders turn a project idea into a practical roadmap. 
 
 **Live demo:** [sabhyamtrivedycoder.github.io/spark2ship-ai](https://sabhyamtrivedycoder.github.io/spark2ship-ai/)
 
+## Account sign-in setup
+
+The site includes Firebase Authentication support for email/password sign-up and sign-in, password reset, sign-out, and Google, Microsoft, Apple, and GitHub sign-in. To activate accounts on GitHub Pages:
+
+1. Create a Firebase project and add a web app.
+2. Copy the Firebase web app configuration into `firebase-config.js`. This browser config is public; do not put OAuth client secrets or private keys in the repository.
+3. In Firebase Authentication, enable Email/Password and each identity provider you want to offer. Add `sabhyamtrivedycoder.github.io` to the authorized domains.
+4. Add each provider's OAuth client details in Firebase Console. Microsoft and GitHub require provider app registrations; Apple sign-in requires Apple Developer Program setup.
+
+Until that Firebase setup is complete, the sign-in controls stay disabled. Account authentication does not sync or protect planner data yet; project progress remains in the current browser, and the public planner stays available as a demo.
+
 ## Run locally
 
 1. Install Node.js 18 or newer.
