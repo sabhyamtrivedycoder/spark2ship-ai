@@ -1,4 +1,5 @@
 const STORAGE_KEY = "buildbuddy-project-v1";
+const IS_GITHUB_PAGES = window.location.hostname.endsWith(".github.io");
 const form = document.querySelector("#idea-form");
 const ideaField = document.querySelector("#idea");
 const generateButton = document.querySelector("#generate-button");
@@ -34,6 +35,62 @@ function clearMessage() {
   errorBox.hidden = true;
 }
 
+function makePagesSamplePlan(input) {
+  const idea = input.idea.trim().replace(/[.!?]+$/, "");
+  const timeframe = input.timeframe || "A few weeks";
+  const budget = input.budget.trim() || "Keep costs low";
+  const tools = input.tools.trim() || "No tools specified";
+  return {
+    demo: true,
+    plan: {
+      summary: `A starter roadmap for ${idea}. GitHub Pages hosts this static demo, so these are sample suggestions.`,
+      milestones: [
+        {
+          title: "Define the smallest useful version",
+          description: "Choose one problem to solve and one result you can show.",
+          tasks: [
+            "Write one sentence describing who this helps and how.",
+            "List the three features the first version must have.",
+            "Pick one simple way to demonstrate that it works.",
+          ],
+        },
+        {
+          title: "Build a working prototype",
+          description: `Make a small version that fits your ${timeframe.toLowerCase()} timeline and available tools.`,
+          tasks: [
+            "Sketch the main screen or system flow.",
+            "Build the core feature before adding extras.",
+            "Try it with a sample input and write down what breaks.",
+          ],
+        },
+        {
+          title: "Test and share what you learned",
+          description: "Get feedback, improve one rough edge, and prepare a clear demo.",
+          tasks: [
+            "Ask two people to try the prototype without coaching them.",
+            "Fix the most confusing or unreliable part.",
+            "Add a README with setup steps, screenshots, and next ideas.",
+          ],
+        },
+      ],
+      tools: tools === "No tools specified"
+        ? ["A notebook for sketches", "A code editor", "A simple checklist"]
+        : [tools, "A notebook for sketches", "A simple checklist"],
+      risks: [
+        { risk: "The first version grows too large.", mitigation: "Keep only the three must-have features in the first build." },
+        { risk: "A tool or part is unavailable.", mitigation: `Check availability early and stay within: ${budget}.` },
+      ],
+    },
+  };
+}
+
+function makePagesSampleSuggestion(input) {
+  return {
+    demo: true,
+    suggestion: `Sample coaching: break “${input.blocker}” into one small step. Try it, write down what happened, then update your task. For “${input.idea}”, your next task is: ${input.nextTask || "build one tiny proof of concept"}.`,
+  };
+}
+
 function node(tag, className, text) {
   const element = document.createElement(tag);
   if (className) element.className = className;
@@ -44,12 +101,12 @@ function node(tag, className, text) {
 function renderPlan() {
   if (!project?.plan) {
     planSection.hidden = true;
-    modeLabel.textContent = "Sample mode";
+    modeLabel.textContent = IS_GITHUB_PAGES ? "Demo mode" : "Sample mode";
     return;
   }
 
   planSection.hidden = false;
-  modeLabel.textContent = project.demo ? "Sample mode" : "AI connected";
+  modeLabel.textContent = project.demo ? (IS_GITHUB_PAGES ? "Demo mode" : "Sample mode") : "AI connected";
   planContent.replaceChildren();
 
   const heading = node("div", "result-heading");
@@ -227,23 +284,29 @@ function renderPlan() {
     coachButton.disabled = true;
     coachButton.textContent = "Thinking…";
     try {
-      const response = await fetch("/api/coach", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          idea: project.input.idea,
-          blocker: blocker.value.trim(),
-          progress: project.updates.map((item) => item.text).join("\n"),
-          nextTask: firstOpenTask(),
-        }),
-      });
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.error || "Could not get a next step.");
+      const coachInput = {
+        idea: project.input.idea,
+        blocker: blocker.value.trim(),
+        progress: project.updates.map((item) => item.text).join("\n"),
+        nextTask: firstOpenTask(),
+      };
+      let result;
+      if (IS_GITHUB_PAGES) {
+        result = makePagesSampleSuggestion(coachInput);
+      } else {
+        const response = await fetch("/api/coach", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(coachInput),
+        });
+        result = await response.json();
+        if (!response.ok) throw new Error(result.error || "Could not get a next step.");
+      }
       suggestion.replaceChildren();
       suggestion.append(node("span", "answer-label", result.demo ? "SAMPLE SUGGESTION" : "SPARK2SHIP SUGGESTS"));
       suggestion.append(node("p", "", result.suggestion));
       suggestion.hidden = false;
-      if (result.demo) modeLabel.textContent = "Sample mode";
+      if (result.demo) modeLabel.textContent = IS_GITHUB_PAGES ? "Demo mode" : "Sample mode";
       blocker.value = "";
     } catch (error) {
       coachError.textContent = error.message;
@@ -298,13 +361,18 @@ form.addEventListener("submit", async (event) => {
   generateButton.querySelector("span:nth-child(2)").textContent = "Making your plan…";
   generateButton.classList.add("is-loading");
   try {
-    const response = await fetch("/api/plan", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    const result = await response.json();
-    if (!response.ok) throw new Error(result.error || "Could not make a plan. Please try again.");
+    let result;
+    if (IS_GITHUB_PAGES) {
+      result = makePagesSamplePlan(payload);
+    } else {
+      const response = await fetch("/api/plan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Could not make a plan. Please try again.");
+    }
     project = {
       id: crypto.randomUUID(),
       input: payload,
