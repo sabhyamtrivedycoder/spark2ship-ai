@@ -37,7 +37,7 @@ button:disabled { cursor: wait; opacity: .75; }
 .topbar { height: 78px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line-soft); }
 .brand { display: inline-flex; align-items: center; gap: 11px; color: var(--ink); text-decoration: none; }
 .brand-mark { width: 34px; height: 34px; display: grid; place-items: center; color: var(--gold); border: 1px solid #4a3d20; border-radius: 11px; background: #1a1913; }
-.brand-mark svg { width: 23px; height: 23px; }
+.brand-mark img { width: 25px; height: 25px; }
 .brand-name { font: 800 18px/1 Manrope, sans-serif; letter-spacing: -.8px; }
 .brand-name span { color: var(--gold); margin-left: 3px; font-size: 11px; letter-spacing: .5px; vertical-align: 2px; }
 .topbar-right { display: flex; align-items: center; gap: 27px; }
@@ -148,7 +148,7 @@ textarea:focus, input:focus, select:focus { border-color: #aa8435; box-shadow: 0
 .steps-section { padding: 29px 0 78px; border-top: 1px solid var(--line-soft); }
 .steps-heading { margin-bottom: 23px; }.steps-heading h2 { margin: 11px 0 0; font: 600 25px Manrope, sans-serif; letter-spacing: -.8px; }
 .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }.step-card { position: relative; min-height: 160px; padding: 19px; border: 1px solid var(--line); border-radius: 12px; background: linear-gradient(145deg, #1a1b15, #141510); }.step-index { position: absolute; top: 17px; right: 17px; color: #67685d; font: 10px 'DM Mono', monospace; }.step-symbol { color: var(--gold); font-size: 21px; }.step-card h3 { margin: 16px 0 7px; font: 600 14px Manrope, sans-serif; }.step-card p { max-width: 250px; margin: 0; color: var(--muted); font-size: 10px; line-height: 1.65; }
-.footer { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid var(--line-soft); }.footer-brand .brand-mark { width: 27px; height: 27px; border-radius: 9px; }.footer-brand .brand-mark svg { width: 18px; }.footer-brand .brand-name { font-size: 14px; }.footer p { margin: 0; color: var(--dim); font-size: 10px; }.footer-tag { color: #777767; font: 9px 'DM Mono', monospace; letter-spacing: 1px; }
+.footer { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid var(--line-soft); }.footer-brand .brand-mark { width: 27px; height: 27px; border-radius: 9px; }.footer-brand .brand-mark img { width: 19px; height: 19px; }.footer-brand .brand-name { font-size: 14px; }.footer p { margin: 0; color: var(--dim); font-size: 10px; }.footer-tag { color: #777767; font: 9px 'DM Mono', monospace; letter-spacing: 1px; }
 
 [hidden] { display: none !important; }
 
