@@ -1,6 +1,6 @@
-# BuildBuddy AI
+# Spark2Ship AI
 
-BuildBuddy helps student builders turn a project idea into a practical roadmap. It creates milestones, task checklists, a toolkit, and risk mitigations. Builders can save progress locally and ask for a next step when they get stuck.
+Spark2Ship helps student builders turn a project idea into a practical roadmap. It creates milestones, task checklists, a toolkit, and risk mitigations. Builders can save progress locally and ask for a next step when they get stuck.
 
 ## Run locally
 
@@ -17,7 +17,7 @@ No package installation is needed. Without an API key, the app uses a clearly ma
 3. Set `OPENAI_MODEL` to a model enabled for your API account if needed.
 4. Restart `npm run dev`.
 
-Keep `.env.local` private. It is excluded by `.gitignore`. Never put an API key in `app.js`, `index.html`, or any other browser code. BuildBuddy sends project details to OpenAI only when an API key is configured; the project plan and progress notes are saved in the browser's local storage.
+Keep `.env.local` private. It is excluded by `.gitignore`. Never put an API key in `app.js`, `index.html`, or any other browser code. Spark2Ship sends project details to OpenAI only when an API key is configured; the project plan and progress notes are saved in the browser's local storage.
 
 ## Deploy
 
@@ -32,4 +32,3 @@ The app includes Vercel serverless functions in `api/`. Import this repository i
 - `server.js` — dependency-free local development server
 
 The AI calls use the OpenAI Responses API. See the [text generation guide](https://developers.openai.com/api/docs/guides/text).
-
