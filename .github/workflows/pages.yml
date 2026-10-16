@@ -31,7 +31,7 @@ jobs:
       - name: Prepare the static website
         run: |
           mkdir -p _site
-          cp index.html styles.css app.js logo.svg favicon.svg _site/
+          cp index.html styles.css app.js logo.svg favicon.svg social-preview.png _site/
       - name: Upload the Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
