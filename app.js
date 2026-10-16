@@ -240,7 +240,7 @@ function renderPlan() {
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || "Could not get a next step.");
       suggestion.replaceChildren();
-      suggestion.append(node("span", "answer-label", result.demo ? "SAMPLE SUGGESTION" : "BUILD BUDDY SUGGESTS"));
+      suggestion.append(node("span", "answer-label", result.demo ? "SAMPLE SUGGESTION" : "SPARK2SHIP SUGGESTS"));
       suggestion.append(node("p", "", result.suggestion));
       suggestion.hidden = false;
       if (result.demo) modeLabel.textContent = "Sample mode";
