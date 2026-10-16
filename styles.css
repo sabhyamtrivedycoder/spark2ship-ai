@@ -55,6 +55,12 @@ h1, h2, h3, p { margin-top: 0; }
 h1 { margin: 23px 0 14px; font: 600 clamp(42px, 5.2vw, 64px)/1.04 Manrope, sans-serif; letter-spacing: -3.6px; }
 h1 em, .steps-heading em, .side-note h3 em { color: var(--gold); font-style: normal; }
 .hero-description { max-width: 415px; margin: 0; color: #b2b1a5; font-size: 14px; line-height: 1.75; }
+.hero-actions { display: flex; align-items: center; gap: 16px; margin-top: 23px; }
+.hero-cta { min-height: 42px; display: inline-flex; align-items: center; justify-content: center; gap: 18px; padding: 0 15px; border: 1px solid #edc560; border-radius: 9px; background: var(--gold); color: #17150e; text-decoration: none; font-size: 11px; font-weight: 700; transition: background .2s ease, transform .2s ease, box-shadow .2s ease; }
+.hero-cta:hover { background: var(--gold-bright); box-shadow: 0 6px 24px #e5b74e25; transform: translateY(-1px); }
+.hero-cta span { font-size: 15px; }
+.hero-secondary { color: var(--muted); font-size: 11px; text-decoration: none; transition: color .2s ease; }
+.hero-secondary:hover { color: var(--gold-bright); }
 .hero-proof { display: flex; align-items: center; gap: 9px; margin-top: 27px; color: var(--muted); font-size: 11px; }
 .proof-icon { color: var(--gold); font-size: 17px; }
 .hero-art { height: 250px; max-width: 340px; justify-self: end; width: 100%; position: relative; display: grid; place-items: center; }
@@ -159,7 +165,7 @@ textarea:focus, input:focus, select:focus { border-color: #aa8435; box-shadow: 0
   .brand-mark { width: 31px; height: 31px; }.brand-name { font-size: 17px; }
   .hero { min-height: 0; display: block; padding: 42px 25px 29px; border-radius: 0 0 15px 15px; }
   h1 { margin-top: 20px; font-size: clamp(40px, 11vw, 52px); letter-spacing: -2.8px; }
-  .hero-description { max-width: 360px; font-size: 12px; }.hero-proof { margin-top: 18px; font-size: 10px; }
+  .hero-description { max-width: 360px; font-size: 12px; }.hero-actions { gap: 12px; margin-top: 18px; }.hero-cta { min-height: 39px; }.hero-secondary { font-size: 10px; }.hero-proof { margin-top: 18px; font-size: 10px; }
   .hero-art { position: absolute; width: 150px; height: 150px; right: -28px; bottom: -25px; opacity: .5; transform: scale(.66); transform-origin: center; }
   .orbit-one, .orbit-two { width: 210px; height: 120px; }.orbit-core { width: 72px; height: 72px; }.orbit-core span { font-size: 38px; }
   .workspace { padding: 48px 0 43px; }.section-heading { align-items: start; flex-direction: column; gap: 7px; margin-bottom: 18px; }.section-heading h2 { font-size: 22px; }.text-button { padding: 3px 0; }
