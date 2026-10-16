@@ -26,6 +26,7 @@ The app includes Vercel serverless functions in `api/`. Import this repository i
 ## Project structure
 
 - `index.html`, `styles.css`, `app.js` — responsive browser interface
+- `logo.svg`, `favicon.svg` — Spark2Ship logo mark and browser icon
 - `api/plan.js` — project plan endpoint
 - `api/coach.js` — next-step coaching endpoint
 - `lib/ai.js` — prompt, sample output, and server-side API calls
